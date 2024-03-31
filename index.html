@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/zenburn.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-background-image="./assets/blwallpaper.png">
+					![](./assets/quakuslogo.png)
+				</section>
+
+				<section>					
+					<section  data-markdown data-background-image="assets/blwallpaper.png">
+						### Cos'è
+						> *What we mean by "Supersonic Subatomic Java".*  
+						> ~[Sito quarkus, sezione about](https://quarkus.io/about/)  
+	
+						Mentre l'innovazione tecnologica verte sullo sviluppo di applicazioni a micro servizi, lo stack tecnologico Java tradizionalmente è formato da applicazioni monolitiche in genere molto pesanti 
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper.png">
+						### Cos'è
+						![](assets/microservices-logical.png)
+					</section>
+				</section>
+								
+				<section>
+					<section data-background-image="assets/blwallpaper.png">
+						<h3>Cos'è</h3>
+						<small>Quarkus è un framework full REST creato per consentire agli sviluppatori Java di creare applicazioni orientate al mondo cloud</small>
+						<img src="assets/quarkus-cloud.png" class="r-stretch">
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper.png">
+						### Cos'è
+						Nel farlo crea, a partire da un sorgente Java, un binario nativo per il sistema con le librerie incluse
+						![](assets/javaquarkusbinary.png)
+
+					</section>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
