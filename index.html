@@ -12,6 +12,7 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/zenburn.css">
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	</head>
 	<style>
 			.ciao{
@@ -23,7 +24,14 @@
 			<div class="slides">
 				<section data-markdown data-background-image="assets/blwallpaper_dark.png" 
 				data-background-size="contain" data-background-repeat="no-repeat">
-					![](./assets/quakuslogodark.png)
+				<script type="text/template">
+						![](./assets/quakuslogodark.png)
+
+						&nbsp;  
+						A cura di Davide Galati (in arte PsykeDady)<!-- .element class="text-start h5 text-white-50 m-5"-->  
+						davide.galati@brainylabs.it<!-- .element class="text-start h5 text-white-50 m-5"-->  
+						psdady@msn.com<!-- .element class="text-start h5 text-white-50 m-5"-->  
+					</script>
 				</section>
 
 				<section>					
@@ -43,7 +51,7 @@
 				</section>
 								
 				<section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					<section data-background-image="assets/blwallpaper_dark_down.png" 
           data-background-size="contain" data-background-repeat="no-repeat">
 						<h3>Cos'è</h3>
 						<small>Quarkus è un framework full REST creato per consentire agli sviluppatori Java di creare applicazioni orientate al mondo cloud</small>
@@ -62,46 +70,249 @@
 					### Howto
 					Per creare un progetto di quarkus si può seguire [il tutorial ufficiale](https://quarkus.io/get-started/).  
 					I prerequisiti sono fondamentalmente:
-					  - Installare Java GraalVM
+					  - Installare Java GraalVM (seguire istruzioni da sito)
 					  - Installare Quarkus cli
 					  - Docker (per testare il caso più verosimilmente possibile)
 				</section>
 
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				<section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						### Howto - Installare Quarkus cli
+
+						Da terminale UNIX eseguire: 
+
+						```bash
+						curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
+						```
+
+						Quindi scrivere:
+						```bash
+						curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
-					### Howto - Installare Quarkus cli
+						### Howto - Installare Quarkus cli (Windows)
 
-					Da terminale UNIX eseguire: 
+						Per installare il tool su Windows è consigliato uno dei seguenti software per emulare l'ambiente UNIX:
+						
+						- [WSL](https://learn.microsoft.com/it-it/windows/wsl/install)
+						- [Cygwin](https://www.cygwin.com) 
+						- [MinGW](https://sourceforge.net/projects/mingw/)
+					</section>
 
-					```bash
-					curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
-					```
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Howto - Installare Quarkus cli (Windows Powershell)
 
-					Quindi scrivere:
-					```bash
-					curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
-					```
+						Si può eventualmente utilizzare powershell scrivendo:
+						
+						```batch
+						iex "& { $(iwr https://ps.jbang.dev) } trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/"
+						iex "& { $(iwr https://ps.jbang.dev) } app install --fresh --force quarkus@quarkusio"
+						```
+					</section>
 				</section>
 
 				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
-					### Howto - Installare Quarkus cli (Windows)
+					### Strumenti/IDE
 
-					Per installare il tool su Windows è consigliato uno dei seguenti software per emulare l'ambiente UNIX:
+					- Quarkus è un framework relativamente nuovo (**~2019**), ma comunque supportato da alcuni IDE.
+					- È possibile consultare sul sito stesso [la lista degli IDE e delle relative estensioni](https://quarkus.io/guides/ide-tooling).
 					
-					- [WSL](https://learn.microsoft.com/it-it/windows/wsl/install)
-					- [Cygwin]() 
-					- [MinGW]()
-
-				</section>
-
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-					<h3>Slide semplice</h3>
+					> Nota del presentatore: 
+					> 
+					> Personalmente utilizzo ed ho testato solo il plugin di Visual Studio Code.  
+					> Nella presentazione sarà quindi mostrato quello.
 				</section>
 
 				<section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						<script type="text/template">
+							### Visual Studio Code - estensioni
+						
+							- È possibile installare l'estensione per quarkus di Visual Studio Code direttamente dall'IDE utilizzando l'apposito menù <!--.element class="small"-->
+
+							![](assets/vscode_quarkus_ext.png) <!-- .element class="col-10"-->
+						</script>
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						<script type="text/template">
+							### Visual Studio Code - estensioni
+
+							- Trattandosi di un framework scritto in java è consigliabile comunque utilizzare tutto il set di estensioni di base di RedHat per Java.
+							- Una volta installata saranno possibili diverse opzioni.
+							- Per visualizzare aprire il control panel (CTRL+Shift+P su Win/Linux, Cmd+Shift+P su Mac).
+							- Una volta aperto cercare "Quarkus" per vedere le azioni disponibili
+
+							![](assets/vscode_quarkus_ext_controlpanel.png) <!-- .element class="col-6"-->
+						</script>
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Visual Studio Code - estensioni
+
+						- In generale, l'opzione più utile è sicuramente quella per fare il DEBUG e l'esecuzione del progetto.
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						### Creare un progetto Quarkus
+
+						- Una volta installato il progetto è necessario semplicemente scrivere:
+
+						```bash
+						quarkus create
+						```
+
+						- Il tool creerà in maniera totalmente autonoma il progetto, dentro cui sarà poi possibile navigare.
+						
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Creare un progetto Quarkus
+
+						- A fine esecuzione si potrà leggere:
+
+						```
+						-----------
+
+						applying codestarts...
+						📚 java
+						🔨 maven
+						📦 quarkus
+						📝 config-properties
+						🔧 tooling-dockerfiles
+						🔧 tooling-maven-wrapper
+						🚀 resteasy-reactive-codestart
+
+						-----------
+						[SUCCESS] ✅  quarkus project has been successfully generated in:
+						--> /home/SharedFiles/code-with-quarkus
+						-----------
+						Navigate into this directory and get started: quarkus dev
+
+						```
+
+						- Nell'ultima riga si può leggere l'istruzione per far partire il progetto.
+						
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						<script type="text/template">
+							### Un occhiata alla struttura del progetto...
+
+							- Aprendo il progetto la cosa sicuramente più evidente è una grande pulizia nella struttura stessa. <!-- .element: class="small" -->
+							
+							![](assets/quarkus_project_tree.png) <!-- .element: class="col-8" -->
+
+						</script>
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Un occhiata alla struttura del progetto...
+					
+					- I punti di interesse maggiori son sicuramente: 
+						- `pom.xml`
+						- `src/main/java/org/acme/GreetingResource.java` che rappresenta un primo endpoint di esempio
+					- Il pom fa riferimento al groupid `org.acme` e artifactID `code-with-quarkus`. 
+					- Questi valori ovviamente possono essere cambiati sostituendo quelli della propria organizazzione nonché del nome del progetto
+					- Di conseguenza può essere cambiato/creato anche il package per la classe Java
+						
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						### Un ~~"ping"~~ bring test
+
+						- Per iniziare con un attività semplice e vedere il funzionamento del proprio del progetto si può personalizzare la classe `GreetingResouce`.
+						- Ad esempio modificando package e contenuto dell'Hello World.
+						- Si può notare una struttura simile agli applicativi Spring, ma ancora di più ai server JAX-RS
+							- Ad esempio il path del Controller è dato dall'annotazione `@Path`
+							- La tipologia di metodo HTTP utilizzato è dato dall'annotazione `@GET`
+							- Il tipo di risultato restituito è specificato dal tipo di ritorno `String`, ma anche dall'annotazione `@Produces(MediaType.TEXT_PLAIN)`
+						- Cambiamo anche nome del metodo e path API del controller: 
+
+						```java
+						@Path("/bring")
+						public class BringTest {
+						
+							@GET
+							@Produces(MediaType.TEXT_PLAIN)
+							public String bring() {
+								return "Bang Bang Born";
+							}
+						}
+						```
+						
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						<script type="text/template">
+							### Un ~~"ping"~~ bring test
+						
+							Ecco il risultato: <!--.element class="text-start"-->
+
+							![](assets/bingbangbangborn_example.png) <!--.element class="col-8"-->
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						### Compilare ed avviare il progetto
+						
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Compilare ed avviare il progetto
+						
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						### Build nativa
+						
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						### Build nativa (Windows)
+						
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Build nativa
+						
+					</section>
+				</section>
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					## The End 
+
+					![](assets/thanks.jpeg)  (T.hanks)
+				</section>
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Slide semplice
+				</section>
+
+				<section>
+					<section data-background-image="assets/blwallpaper_dark_down.png" 
           data-background-size="contain" data-background-repeat="no-repeat">
 						<h3>Slide innestata1</h3>
 						
@@ -176,7 +387,7 @@
 
 				// Add the current slide number to the URL hash so that reloading the
 				// page/copying the URL will return you to the same slide
-				hash: false,
+				hash: true,
 
 				// Flags if we should monitor the hash and change slides accordingly
 				respondToHashChanges: true,
@@ -185,7 +396,7 @@
 				jumpToSlide: true,
 
 				// Push each slide change to the browser history.  Implies `hash: true`
-				history: false,
+				history: true,
 
 				// Enable keyboard shortcuts for navigation
 				keyboard: true,
@@ -302,18 +513,18 @@
 				// is matched separately so there's no need to include styles
 				// like top/right/bottom/left, width/height or margin.
 				autoAnimateStyles: [
-				'opacity',
-				'color',
-				'background-color',
-				'padding',
-				'font-size',
-				'line-height',
-				'letter-spacing',
-				'border-width',
-				'border-color',
-				'border-radius',
-				'outline',
-				'outline-offset'
+					'opacity',
+					'color',
+					'background-color',
+					'padding',
+					'font-size',
+					'line-height',
+					'letter-spacing',
+					'border-width',
+					'border-color',
+					'border-radius',
+					'outline',
+					'outline-offset'
 				],
 
 				// Controls automatic progression to the next slide
