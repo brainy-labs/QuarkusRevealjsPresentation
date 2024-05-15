@@ -34,6 +34,17 @@
 					</script>
 				</section>
 
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Link e info presentazione
+
+					- Potete trovare la presentazione all'indirizzo [quarkustutorialrevealjs.surge.sh](http://quarkustutorialrevealjs.surge.sh)
+					- Con il tasto ESC avrete una panoramica di tutte le slide (*non fatevi spoiler però!*)
+					- Aggiungendo `?print-pdf` all'indirizzo potrete avere una versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
+					- Potete trovare il codice della presentazione sulla mia pagina di Github principale https://github.com/PsykeDady/QuarkusTutorialRevelis
+					- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce <u>a sinistra in basso</u>.
+				</section>
+
 				<section>					
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
           data-background-size="contain" data-background-repeat="no-repeat">
@@ -319,24 +330,214 @@
           data-background-size="contain" data-background-repeat="no-repeat">
 						### Build nativa (Windows)
 						
+						- L'installazione di quarkus su Windows necessita che sia [installato VCRedist](https://learn.microsoft.com/it-it/cpp/windows/latest-supported-vc-redist?view=msvc-170)
+						- Una volta installato, quarkus deve essere eseguito solo dopo aver eseguito l'eseguibile **vcvars64**
+						- Il processo diventa quindi meno automatizzato e più tedioso (ma comunque possibile).
+
 					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Build nativa
+						Per generare una build nativa: 
+						```bash
+						quarkus build --native
+						```
+						
+						Un alternativa valida è usare maven: 
+
+						```bash
+						mvn package -Dnative
+						```
+
+						Da windows (Powershell): 
+						
+						```batch
+						cmd /c 'call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat" & quarkus build --native '
+						```
+						Oppure usare l'eseguibile locale di maven (che inizializza le vcvars):
+						```batch
+						./mvnw package -Dnative
+						```
+					</section>
+
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Build nativa
+
+						Alcune note a margine:  
 						
+						- Se un progetto quarkus funziona alla perfezione con una build locale, **non implica il funzionamento in nativo**.
+						- ci potrebbero essere alcuni problemi legati a librerie non pienamente compatibili o notazioni/funzioni mancanti ma necessarie alla build nativa.
+						- Esistono due articoli ufficiali ([qui](https://quarkus.io/guides/writing-native-applications-tips) e [qui](https://quarkus.io/guides/building-native-image)) per lo sviluppo di applicazioni native.
+							
 					</section>
 				</section>
 
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-					### Test
+				<section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						- Come in ogni altro progetto maven, può essere creata la suite di test da eseguire alle install o build.
+						- Quarkus viene scaricato già con dipendenze: `junit` e `rest-assured`
+						- Il progetto contiene già alcuni test di esempio
+					</section>
 
-					- JUNIT 
-					- Integration
-					- Mock 
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						- L'annotazione `@QuarkusTest` introduce ad una classe di Test 
+						- L'annotazione `@Test` ad uno specifico test.
+						
+						```java
+						@QuarkusTest
+						class GreetingResourceTest {
+
+							@Test
+							void assertTautologia () {
+								assertTrue(true);
+							}
+
+						}
+						```
+
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						
+						- Tramite rest-assured è possibile testare le chiamate API
+						- Tramite il metodo `given` si crea un builder che rappresenta la chiamata
+						- si può specificare l'azione del protocollo HTTP da usare, lo status code atteso ed il body ricevuto
+
+						```java
+						@Test
+						void testHelloEndpoint() {
+							given()
+							.when().get("/bring")
+							.then()
+								.statusCode(200)
+								.body(is("Bang Bang Born"));
+						}
+						```
+
+
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						- Per avviare i test si può usare il client di quarkus
+						```bash
+						quarkus test
+						```
+						- Una volta terminati si possono "riavviare" premendo solo `r`. Oppure terminare premendo `q`
+						- Anche il comando `dev` del client può avviare i test.
+						```bash
+						quarkus dev
+						```
+						- premere il tasto `r` per i test, `q` per chiudere.
+
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						
+						- L'annotazione `@QuarkusIntegrationTest` è invece utilizzata per effettuare test sul prodotto di una build.
+						- È utilizzata soprattutto per testare le esecuzioni di build native, di un container o simili.
+						- Non mischiare `QuarkusTest` e `QuarkusIntegrationTest`. Il primo viene utilizzato in contesti dove l'esecuzione di surefire è certa.
+						- `@Inject` non è supportato da `QuarkusIntegrationTest`
+
+
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						- Per il Mock durante i test si può utilizzare `mockito`.
+						- Aggiungere quindi la dipendenza
+
+						```xml
+						&lt;dependency&gt;
+							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+							&lt;artifactId&gt;quarkus-junit5-mockito&lt;/artifactId&gt;
+							&lt;version&gt;3.10.0&lt;/version&gt;
+						&lt;/dependency&gt;
+						```
+
+						- Importare la classe: 
+						```java
+						import org.mockito.Mockito;
+						```
+
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						Supponendo di complicare un po' la struttura del "bringTest" introducendo un Service:
+
+						```java
+						@ApplicationScoped
+						public class BringService {
+							
+							@Inject
+							BringRepository bringRepository; 
+
+							public String getBringService () {
+								return bringRepository.bringString();
+							}
+						}
+						```
+
+						- Ed un repository :
+
+						```java
+						@ApplicationScoped
+						public class BringRepository {
+							public String bringString() {
+								return "Bang Bang Born";
+							}
+						}
+						```
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Test
+						
+						- È ora possibile testare il mock
+
+						```java
+						@QuarkusTest
+						class MockTest {
+							
+							@Inject
+							BringService bringService;
+						
+							@InjectMock
+							BringRepository bringRepository;
+						
+							@Test
+							void mockTestHello () {
+								Mockito.when(bringRepository.bringString()).thenReturn("Bang Bang Born");
+						
+								assertEquals(bringService.getBringService(), "Bang Bang Born");
+							}
+						}
+						```
+
+					</section>
 
 				</section>
-
 				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 					### Maven e dipendenze
