@@ -57,11 +57,19 @@
 						<small>Quarkus è un framework full REST creato per consentire agli sviluppatori Java di creare applicazioni orientate al mondo cloud</small>
 						<img src="assets/quarkus-cloud.png" class="r-stretch">
 					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Cos'è
 						Nel farlo crea, a partire da un sorgente Java, un binario nativo per il sistema con le librerie incluse
 						![](assets/javaquarkusbinary.png)
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Cos'è
+						- Resta comunque da dire che Quarkus **non è un framework limitato al cloud**.
+						- La struttura di un progetto quarkus non ha differenze rilevanti rispetto a quelle di un progetto Spring o un normale progetto Maven
+						- Né risulta diversa la messa in produzione o il funzionamento (*tranne per la portabilità che potrebbe risentirne*).
+						- Grazie alla compilazione nativa risulta comunque un processo ottimizzato
 					</section>
 				</section>
 
@@ -273,11 +281,27 @@
           data-background-size="contain" data-background-repeat="no-repeat">
 						### Compilare ed avviare il progetto
 						
+						Essendo un progetto maven, per compilare un progetto quarkus è sufficiente il comando 
+
+						```bash
+						mvn clean install
+						```
+
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Compilare ed avviare il progetto
 						
+						L'avvio del progetto è ottenibile in due diversi modi. Tramite maven:
+
+						```bash
+						mvn quarkus:dev
+						```
+
+						Oppure tramite quarkus cli: 
+						```bash
+						quarkus dev
+						```
 					</section>
 				</section>
 
@@ -286,6 +310,10 @@
           data-background-size="contain" data-background-repeat="no-repeat">
 						### Build nativa
 						
+						- Uno dei punti focali che distingue Quarkus dalle alternative è la compilazione nativa
+						- Le build native perdono poi in portabilità, tuttavia tramite meccanismi di containerizzazione si può ovviare facilmente
+						- All'infuori dei sistemi operativi Linux-based la build nativa potrebbe incontrare alcuni scogli iniziali
+						- La build nativa necessita GraalVM e compilatore C
 					</section>
 					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
           data-background-size="contain" data-background-repeat="no-repeat">
@@ -297,6 +325,48 @@
 						### Build nativa
 						
 					</section>
+				</section>
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+					- JUNIT 
+					- Integration
+					- Mock 
+
+				</section>
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Maven e dipendenze
+
+					- DB infile
+
+				</section>
+
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Quarkus VS Spring (Springboot)
+
+					- application property
+					- cache 
+					- annotazioni
+					- estendibilità
+					- hot reload di base
+					
+
+				</section>
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+				</section>
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
 				</section>
 
 				<section  data-markdown data-background-image="assets/blwallpaper_dark.png" 
