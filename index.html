@@ -288,6 +288,23 @@
 				</section>
 
 				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### POST e jackson
+
+						- Quarkus resta comunque un po' meno immediato rispetto a **spring**. Alcune configurazioni iniziali potrebbero non essere immediate per chi viene da quel mondo
+						- Ad esempio, per fare chiamate POST e trattare con JSON va importata la dipendenza di jackson ma per quarkus: 
+
+						```xml
+						<dependency>
+							<groupId>io.quarkus</groupId>
+							<artifactId>quarkus-rest-jackson</artifactId>
+						</dependency>					  
+						```
+					</section>
+				</section>
+
+				<section>
 					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
           data-background-size="contain" data-background-repeat="no-repeat">
 						### Compilare ed avviare il progetto
@@ -370,7 +387,8 @@
 						- Se un progetto quarkus funziona alla perfezione con una build locale, **non implica il funzionamento in nativo**.
 						- ci potrebbero essere alcuni problemi legati a librerie non pienamente compatibili o notazioni/funzioni mancanti ma necessarie alla build nativa.
 						- Esistono due articoli ufficiali ([qui](https://quarkus.io/guides/writing-native-applications-tips) e [qui](https://quarkus.io/guides/building-native-image)) per lo sviluppo di applicazioni native.
-							
+						- Le classi modello o in cui vengono utilizzate tecniche di **reflection** (si pensi a jackson) vanno segnate con `@RegisterForReflection`
+						- -
 					</section>
 				</section>
 
@@ -538,13 +556,112 @@
 					</section>
 
 				</section>
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 					### Maven e dipendenze
 
-					- DB infile
+					- È possibile agganciare svariate dipendenze tramite maven ad un progetto Quarkus.
+					- Ad esempio si può creare un controller per garantire le operazioni CRUD su una risorsa tramite DB.
+					- Tramite `application.property` è possibile impostare i vari parametri di connessione
+				</section>
+
+				<section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### H2 Example
+	
+						- Ogni Database ha i suoi driver ed i suoi parametri. Più info sulla guida [ufficiale](https://quarkus.io/guides/datasource).
+						- Aggiungiamo le dipendenze per un database *in-file* `h2`.
+						```xml
+						&lt;dependency&gt;
+							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+							&lt;artifactId&gt;quarkus-hibernate-orm&lt;/artifactId&gt;
+						&lt;/dependency&gt;
+						&lt;dependency&gt;
+							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+							&lt;artifactId&gt;quarkus-jdbc-h2&lt;/artifactId&gt;
+						&lt;/dependency&gt;
+						&lt;dependency&gt;
+							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+							&lt;artifactId&gt;quarkus-hibernate-validator&lt;/artifactId&gt;
+						&lt;/dependency&gt;
+						```
+					</section>
+					
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### H2 Example
+					
+						- Aggiungiamo sull'application property le proprietà: 
+						```properties
+						quarkus.datasource.db-kind=h2
+						quarkus.datasource.username=quarkus_test
+						quarkus.datasource.password=quarkus_test
+						quarkus.datasource.jdbc.url=jdbc:h2:mem:testdb
+						quarkus.hibernate-orm.dialect=org.hibernate.dialect.H2Dialect
+						quarkus.hibernate-orm.database.generation=drop-and-create
+						quarkus.hibernate-orm.log.sql=true
+						```
+					</section>
+
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### H2 Example
+
+						- Per test costruiamo una catena Repository&arr;Service&arr;Constroller per gestire un utente.
+						- Modello (usando `lombok`): 
+						```java
+						@Data
+						@Builder
+						@EqualsAndHashCode
+						@AllArgsConstructor
+						@NoArgsConstructor
+						@RegisterForReflection
+						@Entity
+						public class UserEntity {
+							@Id
+							private String username;
+							private String email; 
+							private String psk;
+						}						
+						```
+						
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### H2 Example
+	
+						
+						
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### H2 Example
+	
+						
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### H2 Example
+	
+						
+					</section>
+
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### H2 Example
+	
+						
+					</section>
 
 				</section>
+
 
 
 				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
