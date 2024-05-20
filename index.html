@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Quarkus Tutorial</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -43,6 +43,7 @@
 					- Aggiungendo `?print-pdf` all'indirizzo potrete avere una versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
 					- Potete trovare il codice della presentazione sulla mia pagina di Github principale https://github.com/PsykeDady/QuarkusTutorialRevelis
 					- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce <u>a sinistra in basso</u>.
+					- I codici presenti son disponibili sul [mio Github personale](https://github.com/PsykeDady/QuarkusTest) (verranno presto trasferiti anche su quello di Brainy Labs).
 				</section>
 
 				<section>					
@@ -629,13 +630,96 @@
 						}						
 						```
 						
+						- Similmente viene preparata una Response (`UserResponse`) e un Mapper (`UserMapper`).
 					</section>
 
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 						data-background-size="contain" data-background-repeat="no-repeat">
 						### H2 Example
 	
+						- Viene preparato quindi un Repository 
+
+						```java
+						@ApplicationScoped
+						public class UserRepository {
 						
+							@Inject
+							private EntityManager entityManager; 
+							
+							@Transactional
+							public void addUser(UserEntity u) {
+								entityManager.persist(u);
+							}
+						
+							public List<UserEntity> listAll(){
+								Query q= entityManager.createQuery("SELECT u FROM UserEntity u"); 
+								List<UserEntity> u = new LinkedList<>(); 
+								try {
+									List<?> tmpL =q.getResultList();
+									tmpL.forEach(v-> {if(v instanceof UserEntity) u.add((UserEntity)v);});
+								} catch (Exception e) {
+									e.printStackTrace();
+									throw e;
+								}
+								return u;
+							}
+						
+							public UserEntity getUser (String username) {
+								return entityManager.find(UserEntity.class, username);
+							}
+						
+							@Transactional
+							public void updateUser (UserEntity userEntity) {
+								entityManager.merge(userEntity);
+							}
+						
+							@Transactional
+							public void deleteUser (UserEntity userEntity) {
+								entityManager.remove(entityManager.contains(userEntity)? userEntity : entityManager.merge(userEntity));
+							}
+						}
+						```
+						
+
+					</section>
+
+					<section  data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						<h3> H2 Example </h3>
+
+						<ul>
+							<li>Le query vengono fatte con <b>entityManager</b> e <b>HQL</b>.</li>
+						</ul>
+						<pre><code lang="java" data-line-numbers="2">public List&lt;UserEntity&gt; listAll(){
+Query q= entityManager.createQuery("SELECT u FROM UserEntity u"); 
+List&lt;UserEntity&gt; u = new LinkedList&lt;&gt;(); 
+try {
+	List&lt;?&gt; tmpL =q.getResultList();
+	tmpL.forEach(v-> {if(v instanceof UserEntity) u.add((UserEntity)v);});
+} catch (Exception e) {
+	e.printStackTrace();
+	throw e;
+}
+return u;
+}</code></pre>
+						<ul>
+							<li>Alcuni metodi permettono di fare query senza l'inserimento di HQL tramite metodi già predisposti.</li>
+							<li>I metodi incaricati di modificare il database son contrassegnati con <code>@Transactional</code>.</li>
+						</ul>
+						<pre><code data-line-numbers="3">@Transactional
+public void addUser(UserEntity u) {
+	entityManager.persist(u);
+}
+						</code></pre>
+
+						<ul>
+							<li>La rimozione di una riga necessita che si controlli se esiste o no.</li>
+						</ul>
+						<pre><code data-line-numbers="3">@Transactional
+public void deleteUser (UserEntity userEntity) {
+	entityManager.remove(entityManager.contains(userEntity)? userEntity : entityManager.merge(userEntity));
+}
+						</code></pre>
 						
 					</section>
 
@@ -643,25 +727,75 @@
 						data-background-size="contain" data-background-repeat="no-repeat">
 						### H2 Example
 	
-						
+						- Viene quindi messo in piedi il servizio che richiama il repository 
+						```java
+						@ApplicationScoped
+						public class UserService {
+							@Inject
+							private UserRepository userRepository;
+							public void addUser(UserResponse u) {...}
+							public List&lt;UserResponse&gt; listUsers () {...}
+							public UserResponse getUser(String username) {...}
+							public void updateUser (UserResponse user){...}
+							public void deleteUser (UserResponse user) {...}
+						}
+						```
+						- Il servizio richiama semplicemente il DAO mappando le Respose in entity e viceversa.
 					</section>
 
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 						data-background-size="contain" data-background-repeat="no-repeat">
 						### H2 Example
 	
-						
+						- Infine il Controller 
+
+						```java
+						@Path("/user")
+						@Produces("application/json")
+						@Consumes("application/json")
+						public class UserController {
+							@Inject
+							private UserService userService;
+							@POST
+							public Response addUser( UserResponse u) {}
+							@GET
+							@Path("list")
+							public List<UserResponse> listUsers () {}
+							@GET
+							@Path ("{username}")
+							public UserResponse getUser (@RestPath String username) {}
+							@DELETE
+							public Response deleteUser (UserResponse userResponse) {}
+							@PUT
+							public Response updateUser (UserResponse userResponse) {}
+						}
+						```
+
+						- Annotazioni come `@Path`, `@GET`, `@POST` etc.. son molto intuitive
 					</section>
 
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 						data-background-size="contain" data-background-repeat="no-repeat">
 						### H2 Example
 	
-						
-					</section>
+						- Si possono quindi fare quindi i test tramite POSTMAN/cUrl
 
+						![](assets/h2test.png)
+					</section>
 				</section>
 
+				<section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Altri DB e file di import delle query
+						
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Altri DB e file di import delle query
+						
+					</section>
+				</section>
 
 
 				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
@@ -675,16 +809,6 @@
 					- hot reload di base
 					
 
-				</section>
-
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-				data-background-size="contain" data-background-repeat="no-repeat">
-					### Test
-				</section>
-
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-					### Test
 				</section>
 
 				<section  data-markdown data-background-image="assets/blwallpaper_dark.png" 
