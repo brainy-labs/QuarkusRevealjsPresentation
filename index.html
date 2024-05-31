@@ -40,7 +40,7 @@
 
 					- Potete trovare la presentazione all'indirizzo [quarkustutorialrevealjs.surge.sh](http://quarkustutorialrevealjs.surge.sh)
 					- Con il tasto ESC avrete una panoramica di tutte le slide (*non fatevi spoiler però!*)
-					- Aggiungendo `?print-pdf` all'indirizzo potrete avere una versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
+					- Aggiungendo [?print-pdf](http://quarkustutorialrevealjs.surge.sh) all'indirizzo potrete avere una versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
 					- Potete trovare il codice della presentazione sulla mia pagina di Github principale https://github.com/PsykeDady/QuarkusTutorialRevelis
 					- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce <u>a sinistra in basso</u>.
 					- I codici presenti son disponibili sul [mio Github personale](https://github.com/PsykeDady/QuarkusTest) (verranno presto trasferiti anche su quello di Brainy Labs).
@@ -558,7 +558,7 @@
 
 				</section>
 
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 					### Maven e dipendenze
 
@@ -784,11 +784,53 @@ public void deleteUser (UserEntity userEntity) {
 					</section>
 				</section>
 
+
+				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+          data-background-size="contain" data-background-repeat="no-repeat">
+						### Gestione eccezioni
+						- Nell'esempio precedente si è fatto anche uso della gestione delle eccezioni.
+						- Nel caso in cui vengano richiesti i dati di un utente che non esiste, viene lanciata un eccezione di tipo `import jakarta.ws.rs.NotFoundException;`.
+						
+						```java
+						public UserResponse getUser(String username) {
+							UserEntity user = userRepository.getUser(username); 
+							if(user==null) {
+								throw new NotFoundException("User "+username+" not found");
+							}
+							return UserMapper.entityToResponse(user);
+						}
+						```
+					</section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Gestione eccezioni
+						- Un controller intercetta l'eccezione e restituisce un messaggio più pulito ed una risposta con stato 404.
+						```java
+						@Provider
+						public class NotFoundExceptionInterceptor implements ExceptionMapper&lt;NotFoundException&gt; {
+							@Override
+							public Response toResponse(NotFoundException exception) {
+								return Response.status(Status.NOT_FOUND).entity(exception.getMessage()).build();
+							}
+						}
+						```
+						- Si può ovviamente usare il messaggio dell'errore oppure modificarlo.
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Gestione Eccezioni
+						- Ecco a schermo il risultato
+
+						![](assets/user_not_found.png)
+					</section>
+				</section>
+
 				<section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Altri DB e file di import delle query
-						
+						code . 
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
