@@ -14,12 +14,12 @@
 		<link rel="stylesheet" href="plugin/highlight/zenburn.css">
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	</head>
-	<style>
-			.ciao{
-				background-size: contain;
-			}
-	</style>
 	<body>
+		<style>
+			table.table-center th {
+				text-align: center !important;
+			}
+		</style>
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown data-background-image="assets/blwallpaper_dark.png" 
@@ -41,9 +41,10 @@
 					- Potete trovare la presentazione all'indirizzo [quarkustutorialrevealjs.surge.sh](http://quarkustutorialrevealjs.surge.sh)
 					- Con il tasto ESC avrete una panoramica di tutte le slide (*non fatevi spoiler però!*)
 					- Aggiungendo [?print-pdf](http://quarkustutorialrevealjs.surge.sh) all'indirizzo potrete avere una versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
-					- Potete trovare il codice della presentazione sulla mia pagina di Github principale https://github.com/PsykeDady/QuarkusTutorialRevelis
-					- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce <u>a sinistra in basso</u>.
-					- I codici presenti son disponibili sul [mio Github personale](https://github.com/PsykeDady/QuarkusTest) (verranno presto trasferiti anche su quello di Brainy Labs).
+					- Potete trovare il codice della presentazione sulla mia pagina di Github principale https://github.com/brainy-labs/QuarkusRevealjsPresentation
+					- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce **a sinistra in basso**.
+					- I codici presenti son disponibili sul repository github di brainy labs: [H2 + Helloworld Example](https://github.com/brainy-labs/QuarkusH2FirstExample) e [PostgreSQL Example](https://github.com/brainy-labs/QuarkusPostgreSQLExample).
+					
 				</section>
 
 				<section>					
@@ -389,7 +390,6 @@
 						- ci potrebbero essere alcuni problemi legati a librerie non pienamente compatibili o notazioni/funzioni mancanti ma necessarie alla build nativa.
 						- Esistono due articoli ufficiali ([qui](https://quarkus.io/guides/writing-native-applications-tips) e [qui](https://quarkus.io/guides/building-native-image)) per lo sviluppo di applicazioni native.
 						- Le classi modello o in cui vengono utilizzate tecniche di **reflection** (si pensi a jackson) vanno segnate con `@RegisterForReflection`
-						- -
 					</section>
 				</section>
 
@@ -829,17 +829,72 @@ public void deleteUser (UserEntity userEntity) {
 				<section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
+						### DEV Services
+
+						- La DEV Services è una modalità di auto-configurazione out-of-the-box di Quarkus che si attiva nella dev-mode
+						- Quando il progetto viene avviato in modalità dev vengono creati automaticamente i container che si occupano di avviare il progetto
+						- Risulta ovviamente necessario che siano installati i prerequisiti vari (i.e. Docker)
+						- La dev Services inizializza e crea automaticamente i container ed inizializza anche i database nel caso in cui nell'applicazione sia inclusa la persistenza
+
+						
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### DEV Services
+						Ufficialimente Son supportati i seguenti database ([link fonte](https://quarkus.io/guides/databases-dev-services)): 
+						- DB2 (container)
+						- Derby (in-process)
+						- H2 (in-process)
+						- MariaDB (container)
+						- Microsoft SQL Server (container) (requires license acceptance)
+						- MySQL (container)
+						- Oracle Express Edition (container)
+						- PostgreSQL (container)
+					</section>
+				</section>
+
+				<section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
 						### Altri DB e file di import delle query
+
+						- I database in memory non rappresentano l'unica alternativa per utilizzare la persistenza su Quarkus ovviamente
+						- Database SQL, NOSQL di ogni sorta son ben supportati
+						- Si può fare un esempio con un normale DB PostgreSQL
+						- Se necessario si può creare un file che **inizializzi** alcuni valori nel db delle query 
+
 						
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Altri DB e file di import delle query
+
+						- Per creare un progetto che utilizzi PostgreSQL bisogna importare le dipendenze: 
+
+						```xml
+						<dependency>
+							<groupId>io.quarkus</groupId>
+							<artifactId>quarkus-jdbc-postgresql</artifactId>
+						</dependency>
+						<dependency>
+							<groupId>io.quarkus</groupId>
+							<artifactId>quarkus-hibernate-orm</artifactId>
+						</dependency>
+						```
+						- Aggiungiamo `quarkus-rest-jackson` per il parsing dei json
+						- Per semplicità importiamo anche `lombok`
 						
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Altri DB e file di import delle query
+
+						- Tutte le informazioni sulla persistenza con quarkus possono essere [trovate qui](https://quarkus.io/guides/hibernate-orm).
+						- Per caricare uno script sql appena si avvia quarkus si può scrivere:
+						```properties 
+						quarkus.hibernate-orm.sql-load-script = script.sql
+						```
+						- Le istruzioni all'interno di `script.sql` saranno eseguite all'avvio.
 						
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
@@ -855,21 +910,71 @@ public void deleteUser (UserEntity userEntity) {
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Altri DB e file di import delle query
-						
+
+						Qualche nota finale: 
+
+						- Si possono impostare più "datasource" in uno stesso progetto, tramite application property e le `PersistenceUnit`.
+						- L'application property permette di specificare vari comportamenti grazie ai profili. Ad ogni opzione sull'`application.properties` si può apporre ad esempio "%dev." per le configurazioni di develop e "%prod" per quelle di produzione
+						- Un altra nota interessante della gestione del DB di quarkus è la possibilità di gestire il comportamento di Database multitenant tramite application property, tramite l'opzione `quarkus.hibernate-orm.multitenant` e `@TenantId`.
 					</section>
 				</section>
 
 
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				<section>
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
-					### Quarkus VS Spring (Springboot)
+						### Quarkus e cache
+					</section>
+				</section>
 
-					- application property
-					- cache 
-					- annotazioni
-					- estendibilità
-					- hot reload di base
-					
+				<section  data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					<h3> Quarkus VS Spring (Springboot)</h3>
+
+					<table class="table table-striped table-hover table-center">
+						<thead class="table-dark">
+							<tr>
+							<th>Feature</th>
+							<th>Quarkus</th>
+							<th>Spring/Springboot</th>
+						  </tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th >Hot Reload</th>
+								<th class="text-success">out-of-the-box in dev mode</th>
+								<th class="text-warning">tramite dipendenza maven</th>
+							</tr>
+							<tr>
+								<th >application property</th>
+								<th class="text-success">&#10004;</th>
+								<th class="text-success">&#10004;</th>
+							</tr>
+							<tr>
+								<th >cache</th>
+								<th class="text-success">out-of-the-box in dev mode</th>
+								<th class="text-warning">tramite dipendenza maven</th>
+							</tr>
+							<tr>
+								<th >annotazioni</th>
+								<th class="text-success">out-of-the-box in dev mode</th>
+								<th class="text-warning">tramite dipendenza maven</th>
+							</tr>
+							<tr>
+								<th >estendibilità</th>
+								<th class="text-success">out-of-the-box in dev mode</th>
+								<th class="text-warning">tramite dipendenza maven</th>
+							</tr>
+						</tbody>
+					  </table>
+				</section>
+
+				<section  data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### NOTE FINALI 
+					- Nella prossima presentazione verranno trattati casi più specifici legate alle nostre esperienze e opzioni avante di quarkus
+					- Esiste tutto un universo legato a quarkus che probabilmente nemmeno 1000 presentazioni potrebbero coprire (e comunque è già un miracolo se non vi siete addormentati durante questa...)
+					- La documentazione ufficiale in determinati casi è molto molto esaustiva, quello che ho potuto notare è che mancano esempi completi.
 
 				</section>
 
