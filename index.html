@@ -826,6 +826,26 @@ public void deleteUser (UserEntity userEntity) {
 					</section>
 				</section>
 
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				data-background-size="contain" data-background-repeat="no-repeat">
+					### Profili
+
+					- Quarkus semplifica di tantissimo la gestione dei profili nell'application properties
+					- Ogni riga che inizia con `%nomeprofilo` è specifica per quel profilo
+					- La lista dei profili disponibili è introdotta dalla riga `quarkus.profile=list,profili`
+					- Si può aggiungere al comando di avvio di quarkus `-Dquarkus.profile=nomeprofilo` per avviare uno specifico profilo
+
+					Ecco un esempio tratto dalla [doc ufficiale](https://quarkus.io/guides/config-reference#default-runtime-profile):
+					```properties
+					quarkus.profile=common,dev
+
+					my.prop=1234
+					%common.my.prop=1234
+					%dev.my.prop=5678
+					```
+				</section>
+
 				<section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
@@ -835,7 +855,8 @@ public void deleteUser (UserEntity userEntity) {
 						- Quando il progetto viene avviato in modalità dev vengono creati automaticamente i container che si occupano di avviare il progetto
 						- Risulta ovviamente necessario che siano installati i prerequisiti vari (i.e. Docker)
 						- La dev Services inizializza e crea automaticamente i container ed inizializza anche i database nel caso in cui nell'applicazione sia inclusa la persistenza
-
+						- Per abilitare la **dev services** scrivere nell'application property `quarkus.devservices.enabled=false`
+						- Per abilitare la **dev services** per DB e datasource scrivere nell'application property `quarkus.datasource.devservices.enabled=true`
 						
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
@@ -862,6 +883,7 @@ public void deleteUser (UserEntity userEntity) {
 						- Database SQL, NOSQL di ogni sorta son ben supportati
 						- Si può fare un esempio con un normale DB PostgreSQL
 						- Se necessario si può creare un file che **inizializzi** alcuni valori nel db delle query 
+						- Se non si ha installato il server del DB in locale si può utilizzare la **dev-services**
 
 						
 					</section>
@@ -874,16 +896,25 @@ public void deleteUser (UserEntity userEntity) {
 						```xml
 						<dependency>
 							<groupId>io.quarkus</groupId>
-							<artifactId>quarkus-jdbc-postgresql</artifactId>
+							<artifactId>quarkus-hibernate-reactive</artifactId>
 						</dependency>
 						<dependency>
 							<groupId>io.quarkus</groupId>
-							<artifactId>quarkus-hibernate-orm</artifactId>
+							<artifactId>quarkus-reactive-pg-client</artifactId>
 						</dependency>
 						```
+						- **hibernate-orm** fornisce le varie annotazioni e classi di hibernate
+						- **jdb-postgresql** rappresenta il connettore.
+						- **agroal** ottimizza le performance ed il loader balancing del buffer di connessioni.
+						
+						</section>
+						<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### Altri DB e file di import delle query
+						
 						- Aggiungiamo `quarkus-rest-jackson` per il parsing dei json
 						- Per semplicità importiamo anche `lombok`
-						
+						- Abilitiamo la dev services inserendo `quarkus.datasource.devservices.enabled=true` nell'application.property
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
@@ -895,11 +926,6 @@ public void deleteUser (UserEntity userEntity) {
 						quarkus.hibernate-orm.sql-load-script = script.sql
 						```
 						- Le istruzioni all'interno di `script.sql` saranno eseguite all'avvio.
-						
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Altri DB e file di import delle query
 						
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
@@ -965,6 +991,23 @@ public void deleteUser (UserEntity userEntity) {
 								<th class="text-success">out-of-the-box in dev mode</th>
 								<th class="text-warning">tramite dipendenza maven</th>
 							</tr>
+							<tr>
+								<th >DB - settings in application property</th>
+								<th class="text-warning">HARD</th>
+								<th class="text-success">&#10004;</th>
+							</tr>
+							<tr>
+								<th >DB - query repository CRUD</th>
+								<th class="text-warning">Hard/Manuali</th>
+								<th class="text-success">&#10004;</th>
+							</tr>
+							<tr>
+								<th >Documentazione</th>
+								<th class="text-warning">frammentata - confusionaria</th>
+								<th class="text-success">&#10004;</th>
+							</tr>
+
+
 						</tbody>
 					  </table>
 				</section>
@@ -972,6 +1015,7 @@ public void deleteUser (UserEntity userEntity) {
 				<section  data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 					### NOTE FINALI 
+					- Si possono trovare tutte le application property [sulla documentazione ufficiale](https://quarkus.io/guides/all-config).
 					- Nella prossima presentazione verranno trattati casi più specifici legate alle nostre esperienze e opzioni avante di quarkus
 					- Esiste tutto un universo legato a quarkus che probabilmente nemmeno 1000 presentazioni potrebbero coprire (e comunque è già un miracolo se non vi siete addormentati durante questa...)
 					- La documentazione ufficiale in determinati casi è molto molto esaustiva, quello che ho potuto notare è che mancano esempi completi.
