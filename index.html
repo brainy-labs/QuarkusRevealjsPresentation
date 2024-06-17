@@ -1,29 +1,31 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Quarkus Tutorial</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/dracula.css">
+	<title>Quarkus Tutorial</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/zenburn.css">
-		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	</head>
-	<body>
-		<style>
-			table.table-center th {
-				text-align: center !important;
-			}
-		</style>
-		<div class="reveal">
-			<div class="slides">
-				<section data-markdown data-background-image="assets/blwallpaper_dark.png" 
-				data-background-size="contain" data-background-repeat="no-repeat">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/zenburn.css">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<style>
+		table.table-center th {
+			text-align: center !important;
+		}
+	</style>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown data-background-image="assets/blwallpaper_dark.png" data-background-size="contain"
+				data-background-repeat="no-repeat">
 				<script type="text/template">
 						![](./assets/quakuslogodark.png)
 
@@ -32,136 +34,152 @@
 						davide.galati@brainylabs.it<!-- .element class="text-start h5 text-white-50 m-5"-->  
 						psdady@msn.com<!-- .element class="text-start h5 text-white-50 m-5"-->  
 					</script>
+			</section>
+
+			<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+				data-background-size="contain" data-background-repeat="no-repeat">
+				### Link e info presentazione
+
+				- Potete trovare la presentazione all'indirizzo
+				[quarkustutorialrevealjs.surge.sh](http://quarkustutorialrevealjs.surge.sh)
+				- Con il tasto ESC avrete una panoramica di tutte le slide (*non fatevi spoiler però!*)
+				- Aggiungendo [?print-pdf](http://quarkustutorialrevealjs.surge.sh) all'indirizzo potrete avere una
+				versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
+				- Potete trovare il codice della presentazione sulla mia pagina di Github principale
+				https://github.com/brainy-labs/QuarkusRevealjsPresentation
+				- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce
+				**a sinistra in basso**.
+				- I codici presenti son disponibili sul repository github di brainy labs: [H2 + Helloworld
+				Example](https://github.com/brainy-labs/QuarkusH2FirstExample) e [PostgreSQL
+				Example](https://github.com/brainy-labs/QuarkusPostgreSQLExample).
+
+			</section>
+
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Cos'è
+					> *What we mean by "Supersonic Subatomic Java".*
+					> ~[Sito quarkus, sezione about](https://quarkus.io/about/)
+
+					Mentre l'innovazione tecnologica verte sullo sviluppo di applicazioni a micro servizi, lo stack
+					tecnologico Java tradizionalmente è formato da applicazioni monolitiche in genere molto pesanti
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Cos'è
+					![](assets/microservices-logical.png)
+				</section>
+			</section>
+
+			<section>
+				<section data-background-image="assets/blwallpaper_dark_down.png" data-background-size="contain"
+					data-background-repeat="no-repeat">
+					<h3>Cos'è</h3>
+					<small>Quarkus è un framework full REST creato per consentire agli sviluppatori Java di creare
+						applicazioni orientate al mondo cloud</small>
+					<img src="assets/quarkus-cloud.png" class="r-stretch">
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Cos'è
+					Nel farlo crea, a partire da un sorgente Java, un binario nativo per il sistema con le librerie
+					incluse
+					![](assets/javaquarkusbinary.png)
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Cos'è
+					- Resta comunque da dire che Quarkus **non è un framework limitato al cloud**.
+					- La struttura di un progetto quarkus non ha differenze rilevanti rispetto a quelle di un progetto
+					Spring o un normale progetto Maven
+					- Né risulta diversa la messa in produzione o il funzionamento (*tranne per la portabilità che
+					potrebbe risentirne*).
+					- Grazie alla compilazione nativa risulta comunque un processo ottimizzato
+				</section>
+			</section>
+
+			<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+				data-background-size="contain" data-background-repeat="no-repeat">
+				### Howto
+				Per creare un progetto di quarkus si può seguire [il tutorial
+				ufficiale](https://quarkus.io/get-started/).
+				I prerequisiti sono fondamentalmente:
+				- Installare Java GraalVM (seguire istruzioni da sito)
+				- Installare Quarkus cli
+				- Docker (per testare il caso più verosimilmente possibile)
+			</section>
+
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Howto - Installare Quarkus cli
+
+					Da terminale UNIX eseguire:
+
+					```bash
+					curl -Ls https://sh.jbang.dev | bash -s - trust add
+					https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
+					```
+
+					Quindi scrivere:
+					```bash
+					curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Howto - Installare Quarkus cli (Windows)
+
+					Per installare il tool su Windows è consigliato uno dei seguenti software per emulare l'ambiente
+					UNIX:
+
+					- [WSL](https://learn.microsoft.com/it-it/windows/wsl/install)
+					- [Cygwin](https://www.cygwin.com)
+					- [MinGW](https://sourceforge.net/projects/mingw/)
 				</section>
 
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-					### Link e info presentazione
+					### Howto - Installare Quarkus cli (Windows Powershell)
 
-					- Potete trovare la presentazione all'indirizzo [quarkustutorialrevealjs.surge.sh](http://quarkustutorialrevealjs.surge.sh)
-					- Con il tasto ESC avrete una panoramica di tutte le slide (*non fatevi spoiler però!*)
-					- Aggiungendo [?print-pdf](http://quarkustutorialrevealjs.surge.sh) all'indirizzo potrete avere una versione da stampare come pdf (dopo averla aperta stampate la pagina col browser).
-					- Potete trovare il codice della presentazione sulla mia pagina di Github principale https://github.com/brainy-labs/QuarkusRevealjsPresentation
-					- La presentazione si estende in *orizzontale* ma anche in **verticale**! Fare attenzione alle frecce **a sinistra in basso**.
-					- I codici presenti son disponibili sul repository github di brainy labs: [H2 + Helloworld Example](https://github.com/brainy-labs/QuarkusH2FirstExample) e [PostgreSQL Example](https://github.com/brainy-labs/QuarkusPostgreSQLExample).
-					
+					Si può eventualmente utilizzare powershell scrivendo:
+
+					```batch
+					iex "& { $(iwr https://ps.jbang.dev) } trust add
+					https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/"
+					iex "& { $(iwr https://ps.jbang.dev) } app install --fresh --force quarkus@quarkusio"
+					```
 				</section>
+			</section>
 
-				<section>					
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						### Cos'è
-						> *What we mean by "Supersonic Subatomic Java".*  
-						> ~[Sito quarkus, sezione about](https://quarkus.io/about/)  
-	
-						Mentre l'innovazione tecnologica verte sullo sviluppo di applicazioni a micro servizi, lo stack tecnologico Java tradizionalmente è formato da applicazioni monolitiche in genere molto pesanti 
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+			<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+				data-background-size="contain" data-background-repeat="no-repeat">
+				### Strumenti/IDE
+
+				- Quarkus è un framework relativamente nuovo (**~2019**), ma comunque supportato da alcuni IDE.
+				- È possibile consultare sul sito stesso [la lista degli IDE e delle relative
+				estensioni](https://quarkus.io/guides/ide-tooling).
+
+				> Nota del presentatore:
+				>
+				> Personalmente utilizzo ed ho testato solo il plugin di Visual Studio Code.
+				> Nella presentazione sarà quindi mostrato quello.
+			</section>
+
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### Cos'è
-						![](assets/microservices-logical.png)
-					</section>
-				</section>
-								
-				<section>
-					<section data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						<h3>Cos'è</h3>
-						<small>Quarkus è un framework full REST creato per consentire agli sviluppatori Java di creare applicazioni orientate al mondo cloud</small>
-						<img src="assets/quarkus-cloud.png" class="r-stretch">
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Cos'è
-						Nel farlo crea, a partire da un sorgente Java, un binario nativo per il sistema con le librerie incluse
-						![](assets/javaquarkusbinary.png)
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Cos'è
-						- Resta comunque da dire che Quarkus **non è un framework limitato al cloud**.
-						- La struttura di un progetto quarkus non ha differenze rilevanti rispetto a quelle di un progetto Spring o un normale progetto Maven
-						- Né risulta diversa la messa in produzione o il funzionamento (*tranne per la portabilità che potrebbe risentirne*).
-						- Grazie alla compilazione nativa risulta comunque un processo ottimizzato
-					</section>
-				</section>
-
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-					### Howto
-					Per creare un progetto di quarkus si può seguire [il tutorial ufficiale](https://quarkus.io/get-started/).  
-					I prerequisiti sono fondamentalmente:
-					  - Installare Java GraalVM (seguire istruzioni da sito)
-					  - Installare Quarkus cli
-					  - Docker (per testare il caso più verosimilmente possibile)
-				</section>
-
-				<section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						### Howto - Installare Quarkus cli
-
-						Da terminale UNIX eseguire: 
-
-						```bash
-						curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
-						```
-
-						Quindi scrivere:
-						```bash
-						curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Howto - Installare Quarkus cli (Windows)
-
-						Per installare il tool su Windows è consigliato uno dei seguenti software per emulare l'ambiente UNIX:
-						
-						- [WSL](https://learn.microsoft.com/it-it/windows/wsl/install)
-						- [Cygwin](https://www.cygwin.com) 
-						- [MinGW](https://sourceforge.net/projects/mingw/)
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Howto - Installare Quarkus cli (Windows Powershell)
-
-						Si può eventualmente utilizzare powershell scrivendo:
-						
-						```batch
-						iex "& { $(iwr https://ps.jbang.dev) } trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/"
-						iex "& { $(iwr https://ps.jbang.dev) } app install --fresh --force quarkus@quarkusio"
-						```
-					</section>
-				</section>
-
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-					### Strumenti/IDE
-
-					- Quarkus è un framework relativamente nuovo (**~2019**), ma comunque supportato da alcuni IDE.
-					- È possibile consultare sul sito stesso [la lista degli IDE e delle relative estensioni](https://quarkus.io/guides/ide-tooling).
-					
-					> Nota del presentatore: 
-					> 
-					> Personalmente utilizzo ed ho testato solo il plugin di Visual Studio Code.  
-					> Nella presentazione sarà quindi mostrato quello.
-				</section>
-
-				<section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						<script type="text/template">
+					<script type="text/template">
 							### Visual Studio Code - estensioni
 						
 							- È possibile installare l'estensione per quarkus di Visual Studio Code direttamente dall'IDE utilizzando l'apposito menù <!--.element class="small"-->
 
 							![](assets/vscode_quarkus_ext.png) <!-- .element class="col-10"-->
 						</script>
-					</section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						<script type="text/template">
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					<script type="text/template">
 							### Visual Studio Code - estensioni
 
 							- Trattandosi di un framework scritto in java è consigliabile comunque utilizzare tutto il set di estensioni di base di RedHat per Java.
@@ -171,64 +189,65 @@
 
 							![](assets/vscode_quarkus_ext_controlpanel.png) <!-- .element class="col-6"-->
 						</script>
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Visual Studio Code - estensioni
-
-						- In generale, l'opzione più utile è sicuramente quella per fare il DEBUG e l'esecuzione del progetto.
-					</section>
 				</section>
-
-				<section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						### Creare un progetto Quarkus
-
-						- Una volta installato il progetto è necessario semplicemente scrivere:
-
-						```bash
-						quarkus create
-						```
-
-						- Il tool creerà in maniera totalmente autonoma il progetto, dentro cui sarà poi possibile navigare.
-						
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### Creare un progetto Quarkus
+					### Visual Studio Code - estensioni
 
-						- A fine esecuzione si potrà leggere:
-
-						```
-						-----------
-
-						applying codestarts...
-						📚 java
-						🔨 maven
-						📦 quarkus
-						📝 config-properties
-						🔧 tooling-dockerfiles
-						🔧 tooling-maven-wrapper
-						🚀 resteasy-reactive-codestart
-
-						-----------
-						[SUCCESS] ✅  quarkus project has been successfully generated in:
-						--> /home/SharedFiles/code-with-quarkus
-						-----------
-						Navigate into this directory and get started: quarkus dev
-
-						```
-
-						- Nell'ultima riga si può leggere l'istruzione per far partire il progetto.
-						
-					</section>
+					- In generale, l'opzione più utile è sicuramente quella per fare il DEBUG e l'esecuzione del
+					progetto.
 				</section>
+			</section>
 
-				<section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						<script type="text/template">
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Creare un progetto Quarkus
+
+					- Una volta installato il progetto è necessario semplicemente scrivere:
+
+					```bash
+					quarkus create
+					```
+
+					- Il tool creerà in maniera totalmente autonoma il progetto, dentro cui sarà poi possibile navigare.
+
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Creare un progetto Quarkus
+
+					- A fine esecuzione si potrà leggere:
+
+					```
+					-----------
+
+					applying codestarts...
+					📚 java
+					🔨 maven
+					📦 quarkus
+					📝 config-properties
+					🔧 tooling-dockerfiles
+					🔧 tooling-maven-wrapper
+					🚀 resteasy-reactive-codestart
+
+					-----------
+					[SUCCESS] ✅ quarkus project has been successfully generated in:
+					--> /home/SharedFiles/code-with-quarkus
+					-----------
+					Navigate into this directory and get started: quarkus dev
+
+					```
+
+					- Nell'ultima riga si può leggere l'istruzione per far partire il progetto.
+
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					<script type="text/template">
 							### Un occhiata alla struttura del progetto...
 
 							- Aprendo il progetto la cosa sicuramente più evidente è una grande pulizia nella struttura stessa. <!-- .element: class="small" -->
@@ -236,426 +255,446 @@
 							![](assets/quarkus_project_tree.png) <!-- .element: class="col-8" -->
 
 						</script>
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
 					### Un occhiata alla struttura del progetto...
-					
-					- I punti di interesse maggiori son sicuramente: 
-						- `pom.xml`
-						- `src/main/java/org/acme/GreetingResource.java` che rappresenta un primo endpoint di esempio
-					- Il pom fa riferimento al groupid `org.acme` e artifactID `code-with-quarkus`. 
-					- Questi valori ovviamente possono essere cambiati sostituendo quelli della propria organizazzione nonché del nome del progetto
+
+					- I punti di interesse maggiori son sicuramente:
+					- `pom.xml`
+					- `src/main/java/org/acme/GreetingResource.java` che rappresenta un primo endpoint di esempio
+					- Il pom fa riferimento al groupid `org.acme` e artifactID `code-with-quarkus`.
+					- Questi valori ovviamente possono essere cambiati sostituendo quelli della propria organizazzione
+					nonché del nome del progetto
 					- Di conseguenza può essere cambiato/creato anche il package per la classe Java
-						
-					</section>
+
 				</section>
+			</section>
 
-				<section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						### Un ~~"ping"~~ bring test
-
-						- Per iniziare con un attività semplice e vedere il funzionamento del proprio del progetto si può personalizzare la classe `GreetingResouce`.
-						- Ad esempio modificando package e contenuto dell'Hello World.
-						- Si può notare una struttura simile agli applicativi Spring, ma ancora di più ai server JAX-RS
-							- Ad esempio il path del Controller è dato dall'annotazione `@Path`
-							- La tipologia di metodo HTTP utilizzato è dato dall'annotazione `@GET`
-							- Il tipo di risultato restituito è specificato dal tipo di ritorno `String`, ma anche dall'annotazione `@Produces(MediaType.TEXT_PLAIN)`
-						- Cambiamo anche nome del metodo e path API del controller: 
-
-						```java
-						@Path("/bring")
-						public class BringTest {
-						
-							@GET
-							@Produces(MediaType.TEXT_PLAIN)
-							public String bring() {
-								return "Bang Bang Born";
-							}
-						}
-						```
-						
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						<script type="text/template">
+					### Un ~~"ping"~~ bring test
+
+					- Per iniziare con un attività semplice e vedere il funzionamento del proprio del progetto si può
+					personalizzare la classe `GreetingResouce`.
+					- Ad esempio modificando package e contenuto dell'Hello World.
+					- Si può notare una struttura simile agli applicativi Spring, ma ancora di più ai server JAX-RS
+					- Ad esempio il path del Controller è dato dall'annotazione `@Path`
+					- La tipologia di metodo HTTP utilizzato è dato dall'annotazione `@GET`
+					- Il tipo di risultato restituito è specificato dal tipo di ritorno `String`, ma anche
+					dall'annotazione `@Produces(MediaType.TEXT_PLAIN)`
+					- Cambiamo anche nome del metodo e path API del controller:
+
+					```java
+					@Path("/bring")
+					public class BringTest {
+
+					@GET
+					@Produces(MediaType.TEXT_PLAIN)
+					public String bring() {
+					return "Bang Bang Born";
+					}
+					}
+					```
+
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					<script type="text/template">
 							### Un ~~"ping"~~ bring test
 						
 							Ecco il risultato: <!--.element class="text-start"-->
 
 							![](assets/bingbangbangborn_example.png) <!--.element class="col-8"-->
 						</script>
-					</section>
 				</section>
+			</section>
 
-				<section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### POST e jackson
+					### POST e jackson
 
-						- Quarkus resta comunque un po' meno immediato rispetto a **spring**. Alcune configurazioni iniziali potrebbero non essere immediate per chi viene da quel mondo
-						- Ad esempio, per fare chiamate POST e trattare con JSON va importata la dipendenza di jackson ma per quarkus: 
+					- Quarkus resta comunque un po' meno immediato rispetto a **spring**. Alcune configurazioni iniziali
+					potrebbero non essere immediate per chi viene da quel mondo
+					- Ad esempio, per fare chiamate POST e trattare con JSON va importata la dipendenza di jackson ma
+					per quarkus:
 
-						```xml
-						<dependency>
-							<groupId>io.quarkus</groupId>
-							<artifactId>quarkus-rest-jackson</artifactId>
-						</dependency>					  
-						```
-					</section>
+					```xml
+					<dependency>
+						<groupId>io.quarkus</groupId>
+						<artifactId>quarkus-rest-jackson</artifactId>
+					</dependency>
+					```
 				</section>
+			</section>
 
-				<section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						### Compilare ed avviare il progetto
-						
-						Essendo un progetto maven, per compilare un progetto quarkus è sufficiente il comando 
-
-						```bash
-						mvn clean install
-						```
-
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### Compilare ed avviare il progetto
-						
-						L'avvio del progetto è ottenibile in due diversi modi. Tramite maven:
+					### Compilare ed avviare il progetto
 
-						```bash
-						mvn quarkus:dev
-						```
+					Essendo un progetto maven, per compilare un progetto quarkus è sufficiente il comando
 
-						Oppure tramite quarkus cli: 
-						```bash
-						quarkus dev
-						```
-					</section>
+					```bash
+					mvn clean install
+					```
+
 				</section>
-
-				<section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						### Build nativa
-						
-						- Uno dei punti focali che distingue Quarkus dalle alternative è la compilazione nativa
-						- Le build native perdono poi in portabilità, tuttavia tramite meccanismi di containerizzazione si può ovviare facilmente
-						- All'infuori dei sistemi operativi Linux-based la build nativa potrebbe incontrare alcuni scogli iniziali
-						- La build nativa necessita GraalVM e compilatore C
-					</section>
-					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						### Build nativa (Windows)
-						
-						- L'installazione di quarkus su Windows necessita che sia [installato VCRedist](https://learn.microsoft.com/it-it/cpp/windows/latest-supported-vc-redist?view=msvc-170)
-						- Una volta installato, quarkus deve essere eseguito solo dopo aver eseguito l'eseguibile **vcvars64**
-						- Il processo diventa quindi meno automatizzato e più tedioso (ma comunque possibile).
-
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### Build nativa
-						Per generare una build nativa: 
-						```bash
-						quarkus build --native
-						```
-						
-						Un alternativa valida è usare maven: 
+					### Compilare ed avviare il progetto
 
-						```bash
-						mvn package -Dnative
-						```
+					L'avvio del progetto è ottenibile in due diversi modi. Tramite maven:
 
-						Da windows (Powershell): 
-						
-						```batch
-						cmd /c 'call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat" & quarkus build --native '
-						```
-						Oppure usare l'eseguibile locale di maven (che inizializza le vcvars):
-						```batch
-						./mvnw package -Dnative
-						```
-					</section>
+					```bash
+					mvn quarkus:dev
+					```
 
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Build nativa
-
-						Alcune note a margine:  
-						
-						- Se un progetto quarkus funziona alla perfezione con una build locale, **non implica il funzionamento in nativo**.
-						- ci potrebbero essere alcuni problemi legati a librerie non pienamente compatibili o notazioni/funzioni mancanti ma necessarie alla build nativa.
-						- Esistono due articoli ufficiali ([qui](https://quarkus.io/guides/writing-native-applications-tips) e [qui](https://quarkus.io/guides/building-native-image)) per lo sviluppo di applicazioni native.
-						- Le classi modello o in cui vengono utilizzate tecniche di **reflection** (si pensi a jackson) vanno segnate con `@RegisterForReflection`
-					</section>
+					Oppure tramite quarkus cli:
+					```bash
+					quarkus dev
+					```
 				</section>
+			</section>
 
-				<section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-						data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						- Come in ogni altro progetto maven, può essere creata la suite di test da eseguire alle install o build.
-						- Quarkus viene scaricato già con dipendenze: `junit` e `rest-assured`
-						- Il progetto contiene già alcuni test di esempio
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						- L'annotazione `@QuarkusTest` introduce ad una classe di Test 
-						- L'annotazione `@Test` ad uno specifico test.
-						
-						```java
-						@QuarkusTest
-						class GreetingResourceTest {
+					### Build nativa
 
-							@Test
-							void assertTautologia () {
-								assertTrue(true);
-							}
-
-						}
-						```
-
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					- Uno dei punti focali che distingue Quarkus dalle alternative è la compilazione nativa
+					- Le build native perdono poi in portabilità, tuttavia tramite meccanismi di containerizzazione si
+					può ovviare facilmente
+					- All'infuori dei sistemi operativi Linux-based la build nativa potrebbe incontrare alcuni scogli
+					iniziali
+					- La build nativa necessita GraalVM e compilatore C
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						
-						- Tramite rest-assured è possibile testare le chiamate API
-						- Tramite il metodo `given` si crea un builder che rappresenta la chiamata
-						- si può specificare l'azione del protocollo HTTP da usare, lo status code atteso ed il body ricevuto
+					### Build nativa (Windows)
 
-						```java
-						@Test
-						void testHelloEndpoint() {
-							given()
-							.when().get("/bring")
-							.then()
-								.statusCode(200)
-								.body(is("Bang Bang Born"));
-						}
-						```
-
-
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						- Per avviare i test si può usare il client di quarkus
-						```bash
-						quarkus test
-						```
-						- Una volta terminati si possono "riavviare" premendo solo `r`. Oppure terminare premendo `q`
-						- Anche il comando `dev` del client può avviare i test.
-						```bash
-						quarkus dev
-						```
-						- premere il tasto `r` per i test, `q` per chiudere.
-
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						
-						- L'annotazione `@QuarkusIntegrationTest` è invece utilizzata per effettuare test sul prodotto di una build.
-						- È utilizzata soprattutto per testare le esecuzioni di build native, di un container o simili.
-						- Non mischiare `QuarkusTest` e `QuarkusIntegrationTest`. Il primo viene utilizzato in contesti dove l'esecuzione di surefire è certa.
-						- `@Inject` non è supportato da `QuarkusIntegrationTest`
-
-
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						- Per il Mock durante i test si può utilizzare `mockito`.
-						- Aggiungere quindi la dipendenza
-
-						```xml
-						&lt;dependency&gt;
-							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-							&lt;artifactId&gt;quarkus-junit5-mockito&lt;/artifactId&gt;
-							&lt;version&gt;3.10.0&lt;/version&gt;
-						&lt;/dependency&gt;
-						```
-
-						- Importare la classe: 
-						```java
-						import org.mockito.Mockito;
-						```
-
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						Supponendo di complicare un po' la struttura del "bringTest" introducendo un Service:
-
-						```java
-						@ApplicationScoped
-						public class BringService {
-							
-							@Inject
-							BringRepository bringRepository; 
-
-							public String getBringService () {
-								return bringRepository.bringString();
-							}
-						}
-						```
-
-						- Ed un repository :
-
-						```java
-						@ApplicationScoped
-						public class BringRepository {
-							public String bringString() {
-								return "Bang Bang Born";
-							}
-						}
-						```
-					</section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Test
-						
-						- È ora possibile testare il mock
-
-						```java
-						@QuarkusTest
-						class MockTest {
-							
-							@Inject
-							BringService bringService;
-						
-							@InjectMock
-							BringRepository bringRepository;
-						
-							@Test
-							void mockTestHello () {
-								Mockito.when(bringRepository.bringString()).thenReturn("Bang Bang Born");
-						
-								assertEquals(bringService.getBringService(), "Bang Bang Born");
-							}
-						}
-						```
-
-					</section>
+					- L'installazione di quarkus su Windows necessita che sia [installato
+					VCRedist](https://learn.microsoft.com/it-it/cpp/windows/latest-supported-vc-redist?view=msvc-170)
+					- Una volta installato, quarkus deve essere eseguito solo dopo aver eseguito l'eseguibile
+					**vcvars64**
+					- Il processo diventa quindi meno automatizzato e più tedioso (ma comunque possibile).
 
 				</section>
 
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-					### Maven e dipendenze
+					### Build nativa
+					Per generare una build nativa:
+					```bash
+					quarkus build --native
+					```
 
-					- È possibile agganciare svariate dipendenze tramite maven ad un progetto Quarkus.
-					- Ad esempio si può creare un controller per garantire le operazioni CRUD su una risorsa tramite DB.
-					- Tramite `application.property` è possibile impostare i vari parametri di connessione
+					Un alternativa valida è usare maven:
+
+					```bash
+					mvn package -Dnative
+					```
+
+					Da windows (Powershell):
+
+					```batch
+					cmd /c 'call "C:\Program Files (x86)\Microsoft Visual
+					Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat" & quarkus build --native '
+					```
+					Oppure usare l'eseguibile locale di maven (che inizializza le vcvars):
+					```batch
+					./mvnw package -Dnative
+					```
 				</section>
 
-				<section>
-
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-						data-background-size="contain" data-background-repeat="no-repeat">
-						### H2 Example
-	
-						- Ogni Database ha i suoi driver ed i suoi parametri. Più info sulla guida [ufficiale](https://quarkus.io/guides/datasource).
-						- Aggiungiamo le dipendenze per un database *in-file* `h2`.
-						```xml
-						&lt;dependency&gt;
-							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-							&lt;artifactId&gt;quarkus-hibernate-orm&lt;/artifactId&gt;
-						&lt;/dependency&gt;
-						&lt;dependency&gt;
-							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-							&lt;artifactId&gt;quarkus-jdbc-h2&lt;/artifactId&gt;
-						&lt;/dependency&gt;
-						&lt;dependency&gt;
-							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-							&lt;artifactId&gt;quarkus-hibernate-validator&lt;/artifactId&gt;
-						&lt;/dependency&gt;
-						```
-					</section>
-					
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
 					data-background-size="contain" data-background-repeat="no-repeat">
-						### H2 Example
-					
-						- Aggiungiamo sull'application property le proprietà: 
-						```properties
-						quarkus.datasource.db-kind=h2
-						quarkus.datasource.username=quarkus_test
-						quarkus.datasource.password=quarkus_test
-						quarkus.datasource.jdbc.url=jdbc:h2:mem:testdb
-						quarkus.hibernate-orm.dialect=org.hibernate.dialect.H2Dialect
-						quarkus.hibernate-orm.database.generation=drop-and-create
-						quarkus.hibernate-orm.log.sql=true
-						```
-					</section>
+					### Build nativa
+
+					Alcune note a margine:
+
+					- Se un progetto quarkus funziona alla perfezione con una build locale, **non implica il
+					funzionamento in nativo**.
+					- ci potrebbero essere alcuni problemi legati a librerie non pienamente compatibili o
+					notazioni/funzioni mancanti ma necessarie alla build nativa.
+					- Esistono due articoli ufficiali ([qui](https://quarkus.io/guides/writing-native-applications-tips)
+					e [qui](https://quarkus.io/guides/building-native-image)) per lo sviluppo di applicazioni native.
+					- Le classi modello o in cui vengono utilizzate tecniche di **reflection** (si pensi a jackson)
+					vanno segnate con `@RegisterForReflection`
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+					- Come in ogni altro progetto maven, può essere creata la suite di test da eseguire alle install o
+					build.
+					- Quarkus viene scaricato già con dipendenze: `junit` e `rest-assured`
+					- Il progetto contiene già alcuni test di esempio
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+					- L'annotazione `@QuarkusTest` introduce ad una classe di Test
+					- L'annotazione `@Test` ad uno specifico test.
+
+					```java
+					@QuarkusTest
+					class GreetingResourceTest {
+
+					@Test
+					void assertTautologia () {
+					assertTrue(true);
+					}
+
+					}
+					```
+
+				</section>
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
 
 
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-						data-background-size="contain" data-background-repeat="no-repeat">
-						### H2 Example
+					- Tramite rest-assured è possibile testare le chiamate API
+					- Tramite il metodo `given` si crea un builder che rappresenta la chiamata
+					- si può specificare l'azione del protocollo HTTP da usare, lo status code atteso ed il body
+					ricevuto
 
-						- Per test costruiamo una catena Repository&arr;Service&arr;Constroller per gestire un utente.
-						- Modello (usando `lombok`): 
-						```java
-						@Data
-						@Builder
-						@EqualsAndHashCode
-						@AllArgsConstructor
-						@NoArgsConstructor
-						@RegisterForReflection
-						@Entity
-						public class UserEntity {
-							@Id
-							private String username;
-							private String email; 
-							private String psk;
-						}						
-						```
-						
-						- Similmente viene preparata una Response (`UserResponse`) e un Mapper (`UserMapper`).
-					</section>
+					```java
+					@Test
+					void testHelloEndpoint() {
+					given()
+					.when().get("/bring")
+					.then()
+					.statusCode(200)
+					.body(is("Bang Bang Born"));
+					}
+					```
 
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
-						data-background-size="contain" data-background-repeat="no-repeat">
-						### H2 Example
-	
-						- Viene preparato quindi un Repository 
 
-						```java
-						@ApplicationScoped
-						public class UserRepository {
-						
-							@Inject
-							private EntityManager entityManager; 
-							
-							@Transactional
-							public void addUser(UserEntity u) {
-								entityManager.persist(u);
-							}
-						
-							public List<UserEntity> listAll(){
-								Query q= entityManager.createQuery("SELECT u FROM UserEntity u"); 
-								List<UserEntity> u = new LinkedList<>(); 
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+					- Per avviare i test si può usare il client di quarkus
+					```bash
+					quarkus test
+					```
+					- Una volta terminati si possono "riavviare" premendo solo `r`. Oppure terminare premendo `q`
+					- Anche il comando `dev` del client può avviare i test.
+					```bash
+					quarkus dev
+					```
+					- premere il tasto `r` per i test, `q` per chiudere.
+
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+
+					- L'annotazione `@QuarkusIntegrationTest` è invece utilizzata per effettuare test sul prodotto di
+					una build.
+					- È utilizzata soprattutto per testare le esecuzioni di build native, di un container o simili.
+					- Non mischiare `QuarkusTest` e `QuarkusIntegrationTest`. Il primo viene utilizzato in contesti dove
+					l'esecuzione di surefire è certa.
+					- `@Inject` non è supportato da `QuarkusIntegrationTest`
+
+
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+					- Per il Mock durante i test si può utilizzare `mockito`.
+					- Aggiungere quindi la dipendenza
+
+					```xml
+					&lt;dependency&gt;
+					&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+					&lt;artifactId&gt;quarkus-junit5-mockito&lt;/artifactId&gt;
+					&lt;version&gt;3.10.0&lt;/version&gt;
+					&lt;/dependency&gt;
+					```
+
+					- Importare la classe:
+					```java
+					import org.mockito.Mockito;
+					```
+
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+					Supponendo di complicare un po' la struttura del "bringTest" introducendo un Service:
+
+					```java
+					@ApplicationScoped
+					public class BringService {
+
+					@Inject
+					BringRepository bringRepository;
+
+					public String getBringService () {
+					return bringRepository.bringString();
+					}
+					}
+					```
+
+					- Ed un repository :
+
+					```java
+					@ApplicationScoped
+					public class BringRepository {
+					public String bringString() {
+					return "Bang Bang Born";
+					}
+					}
+					```
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### Test
+
+					- È ora possibile testare il mock
+
+					```java
+					@QuarkusTest
+					class MockTest {
+
+					@Inject
+					BringService bringService;
+
+					@InjectMock
+					BringRepository bringRepository;
+
+					@Test
+					void mockTestHello () {
+					Mockito.when(bringRepository.bringString()).thenReturn("Bang Bang Born");
+
+					assertEquals(bringService.getBringService(), "Bang Bang Born");
+					}
+					}
+					```
+
+				</section>
+
+			</section>
+
+			<section data-markdown data-background-image="assets/blwallpaper_dark_right.png"
+				data-background-size="contain" data-background-repeat="no-repeat">
+				### Maven e dipendenze
+
+				- È possibile agganciare svariate dipendenze tramite maven ad un progetto Quarkus.
+				- Ad esempio si può creare un controller per garantire le operazioni CRUD su una risorsa tramite DB.
+				- Tramite `application.property` è possibile impostare i vari parametri di connessione
+			</section>
+
+			<section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### H2 Example
+
+					- Ogni Database ha i suoi driver ed i suoi parametri. Più info sulla guida
+					[ufficiale](https://quarkus.io/guides/datasource).
+					- Aggiungiamo le dipendenze per un database *in-file* `h2`.
+					```xml
+					&lt;dependency&gt;
+					&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+					&lt;artifactId&gt;quarkus-hibernate-orm&lt;/artifactId&gt;
+					&lt;/dependency&gt;
+					&lt;dependency&gt;
+					&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+					&lt;artifactId&gt;quarkus-jdbc-h2&lt;/artifactId&gt;
+					&lt;/dependency&gt;
+					&lt;dependency&gt;
+					&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+					&lt;artifactId&gt;quarkus-hibernate-validator&lt;/artifactId&gt;
+					&lt;/dependency&gt;
+					```
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### H2 Example
+
+					- Aggiungiamo sull'application property le proprietà:
+					```properties
+					quarkus.datasource.db-kind=h2
+					quarkus.datasource.username=quarkus_test
+					quarkus.datasource.password=quarkus_test
+					quarkus.datasource.jdbc.url=jdbc:h2:mem:testdb
+					quarkus.hibernate-orm.dialect=org.hibernate.dialect.H2Dialect
+					quarkus.hibernate-orm.database.generation=drop-and-create
+					quarkus.hibernate-orm.log.sql=true
+					```
+				</section>
+
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### H2 Example
+
+					- Per test costruiamo una catena Repository&arr;Service&arr;Constroller per gestire un utente.
+					- Modello (usando `lombok`):
+					```java
+					@Data
+					@Builder
+					@EqualsAndHashCode
+					@AllArgsConstructor
+					@NoArgsConstructor
+					@RegisterForReflection
+					@Entity
+					public class UserEntity {
+					@Id
+					private String username;
+					private String email;
+					private String psk;
+					}
+					```
+
+					- Similmente viene preparata una Response (`UserResponse`) e un Mapper (`UserMapper`).
+				</section>
+
+				<section data-markdown data-background-image="assets/blwallpaper_dark_down.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+					### H2 Example
+
+					- Viene preparato quindi un Repository
+
+					```java
+					@ApplicationScoped
+					public class UserRepository {
+
+					@Inject
+					private EntityManager entityManager;
+
+					@Transactional
+					public void addUser(UserEntity u) {
+					entityManager.persist(u);
+					}
+
+					public List<UserEntity> listAll(){
+						Query q= entityManager.createQuery("SELECT u FROM UserEntity u");
+						List<UserEntity> u = new LinkedList<>();
 								try {
-									List<?> tmpL =q.getResultList();
+								List
+								<?> tmpL =q.getResultList();
 									tmpL.forEach(v-> {if(v instanceof UserEntity) u.add((UserEntity)v);});
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -894,18 +933,18 @@ public void deleteUser (UserEntity userEntity) {
 						- Per creare un progetto che utilizzi PostgreSQL bisogna importare le dipendenze: 
 
 						```xml
-						<dependency>
-							<groupId>io.quarkus</groupId>
-							<artifactId>quarkus-hibernate-reactive</artifactId>
-						</dependency>
-						<dependency>
-							<groupId>io.quarkus</groupId>
-							<artifactId>quarkus-reactive-pg-client</artifactId>
-						</dependency>
+						&lt;dependency&gt;
+							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+							&lt;artifactId&gt;quarkus-jdbc-postgresql&lt;/artifactId&gt;
+						  &lt;/dependency&gt;
+						  &lt;dependency&gt;
+							  &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+							  &lt;artifactId&gt;quarkus-hibernate-orm&lt;/artifactId&gt;
+						  &lt;/dependency&gt;
+					  
 						```
 						- **hibernate-orm** fornisce le varie annotazioni e classi di hibernate
 						- **jdb-postgresql** rappresenta il connettore.
-						- **agroal** ottimizza le performance ed il loader balancing del buffer di connessioni.
 						
 						</section>
 						<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
@@ -914,24 +953,57 @@ public void deleteUser (UserEntity userEntity) {
 						
 						- Aggiungiamo `quarkus-rest-jackson` per il parsing dei json
 						- Per semplicità importiamo anche `lombok`
-						- Abilitiamo la dev services inserendo `quarkus.datasource.devservices.enabled=true` nell'application.property
+						
+						</section>
+						<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+						data-background-size="contain" data-background-repeat="no-repeat">
+						### Altri DB e file di import delle query
+						
+						- Altri aggiustamenti nell'application.properties 
+						
+						```properties
+						quarkus.datasource.db-kind=postgresql 
+						quarkus.datasource.username=quarkus
+						quarkus.datasource.password=quarkus
+						quarkus.datasource.devservices.image-name=postgres:16.3
+						
+						quarkus.datasource.jdbc.url=jdbc:postgresql://localhost/quarkus
+						quarkus.datasource.devservices.port=5432
+						
+						quarkus.hibernate-orm.database.generation=drop-and-create
+						
+						quarkus.devservices.enabled=true
+						quarkus.datasource.devservices.enabled=true
+						
+						quarkus.hibernate-orm.sql-load-script=import.sql
+						```
+						
+						- Abilitiamo la dev services inserendo `quarkus.datasource.devservices.enabled` e `quarkus.devservices.enabled` a true
+						- Per utilizzare correttamente il devservices bisogna ricordarsi che password/utente e db son di default `quarkus`, inoltre per specificare la porta di connessione è bene utilizzare `quarkus.datasource.devservices.port=5432`
+						- Per caricare uno script iniziale basta scrivere `quarkus.hibernate-orm.sql-load-script=import.sql` (import.sql è in src/main/resource come application.properties)
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Altri DB e file di import delle query
 
-						- Tutte le informazioni sulla persistenza con quarkus possono essere [trovate qui](https://quarkus.io/guides/hibernate-orm).
-						- Per caricare uno script sql appena si avvia quarkus si può scrivere:
-						```properties 
-						quarkus.hibernate-orm.sql-load-script = script.sql
-						```
-						- Le istruzioni all'interno di `script.sql` saranno eseguite all'avvio.
+						- La struttura base del progetto non cambia 
+
+						![](assets/PSQL_projectstructure.png)
 						
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Altri DB e file di import delle query
-						
+						- All'avvio di quarkus viene avviato il container con al suo interno l'istanza di PSQL
+						![](assets/PSQL_dev-services_container.png)
+
+					</section>
+					<section  data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Altri DB e file di import delle query
+						- Dal risultato si può notare come venga automaticamente eseguita la prima query 
+
+						![](assets/PSQL_curl_example.png)
 					</section>
 					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
@@ -950,6 +1022,94 @@ public void deleteUser (UserEntity userEntity) {
 					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 						### Quarkus e cache
+
+						- Quarkus ha un supporto alla cache molto "user friendly".
+						- Le configurazioni avvengono tramite application.properties.
+						- Il backend cache di Quarkus è chiamato "**caffeine**"
+						- Si può trovare la documentazione [sulla pagina ufficiale](https://quarkus.io/guides/cache).
+					</section>
+
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Quarkus e cache
+
+						- Per configurare la cache aggiungere la seguente dipendenza
+						```xml
+						&lt;dependency&gt;
+							&lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+							&lt;artifactId&gt;quarkus-cache&lt;/artifactId&gt;
+						&lt;/dependency&gt;
+						```
+					</section>
+
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Quarkus e cache
+
+						- Si possono impostare i parametri della cache dall'application.properties
+
+						```xml
+						## Quarkus Cache
+						quarkus.cache.enabled=true
+						quarkus.cache.type=caffeine
+						quarkus.cache.caffeine."NOME_CACHE".initial-capacity=100
+						quarkus.cache.caffeine."NOME_CACHE".maximum-size=1000
+						quarkus.cache.caffeine."NOME_CACHE".expire-after-write=60M
+						```
+
+						- Si possono impostare diverse cache cambiando il nome
+						- inizial-capacity imposta una dimensione minima della cache
+						- maximum-size una capacità massima
+						- expire-after-write la durata a seguito della scrittura
+						- esistono altri parametri configurabili
+
+					</section>
+
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Quarkus e cache
+
+						- L'utilizzo base passa da diverse annotazioni: 
+							- `@CacheResult` - imposta la cache su quel valore di ritorno
+							- `@CacheInvalidateAll` - invalida le cache
+							- `keygenerator` - non è un'annotazione ma un metodo di generazione e distribuzione della cache  
+					</section>
+
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Quarkus e cache
+
+						- La cache può essere anche programmatica: 
+						```java
+						import io.smallrye.mutiny.Uni;
+						@ApplicationScoped
+						public class CachedExpensiveService {
+
+							@Inject 
+							@CacheName("my-cache")
+							Cache cache;
+
+							public Uni<String> getNonBlockingExpensiveValue(Object key) { 
+								return cache.get(key, k -> { 
+									/*
+									* Put an expensive call here.
+									* It will be executed only if the key is not already associated with a value in the cache.
+									*/
+								});
+							}
+							```
+
+							- Uni è un tipo di ritorno "non bloccante"
+					</section>
+
+					<section data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Quarkus e cache
+
+						- La cache di quarkus è facilmente utilizzabile
+						- configurabile da application.properties
+						- utilizzabile tramite annotazioni oppure in maniera programmatica
+
 					</section>
 				</section>
 
@@ -978,18 +1138,18 @@ public void deleteUser (UserEntity userEntity) {
 							</tr>
 							<tr>
 								<th >cache</th>
-								<th class="text-success">out-of-the-box in dev mode</th>
-								<th class="text-warning">tramite dipendenza maven</th>
+								<th class="text-success">&#10004;</th>
+								<th class="text-success">&#10004;</th>
 							</tr>
 							<tr>
 								<th >annotazioni</th>
-								<th class="text-success">out-of-the-box in dev mode</th>
-								<th class="text-warning">tramite dipendenza maven</th>
+								<th class="text-success">&#10004;</th>
+								<th class="text-success">&#10004;</th>
 							</tr>
 							<tr>
 								<th >estendibilità</th>
-								<th class="text-success">out-of-the-box in dev mode</th>
-								<th class="text-warning">tramite dipendenza maven</th>
+								<th class="text-warning">&#10004; (con qualche riguardo)</th>
+								<th class="text-success">&#10004;</th>
 							</tr>
 							<tr>
 								<th >DB - settings in application property</th>
@@ -1012,7 +1172,7 @@ public void deleteUser (UserEntity userEntity) {
 					  </table>
 				</section>
 
-				<section  data-background-image="assets/blwallpaper_dark_right.png" 
+				<section data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
 					data-background-size="contain" data-background-repeat="no-repeat">
 					### NOTE FINALI 
 					- Si possono trovare tutte le application property [sulla documentazione ufficiale](https://quarkus.io/guides/all-config).
@@ -1027,24 +1187,8 @@ public void deleteUser (UserEntity userEntity) {
 					## The End 
 
 					![](assets/thanks.jpeg)  (T.hanks)
-				</section>
 
-				<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-					### Slide semplice
-				</section>
-
-				<section>
-					<section data-background-image="assets/blwallpaper_dark_down.png" 
-          data-background-size="contain" data-background-repeat="no-repeat">
-						<h3>Slide innestata1</h3>
-						
-					</section>
-					<section  data-markdown data-background-image="assets/blwallpaper_dark_right.png" 
-					data-background-size="contain" data-background-repeat="no-repeat">
-						### Slide innestata 2
-						
-					</section>
+					> Il framework preferito dalle anatre per programmare? QUA-rkus
 				</section>
 
 			</div>
@@ -1325,8 +1469,8 @@ public void deleteUser (UserEntity userEntity) {
 				// Time before the cursor is hidden (in ms)
 				hideCursorTime: 5000,
 
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});					
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+			});
 			// Make reveal.js aware of the size change
 			Reveal.layout();
 		</script>
