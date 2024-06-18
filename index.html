@@ -13,7 +13,7 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/zenburn.css">
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -1091,6 +1091,24 @@ public void deleteUser (UserEntity userEntity) {
 							- `@CacheResult` - imposta la cache su quel valore di ritorno
 							- `@CacheInvalidateAll` - invalida le cache
 							- `keygenerator` - non è un'annotazione ma un metodo di generazione e distribuzione della cache  
+					</section>
+
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Quarkus e cache
+
+						- Segue un piccolo esempio di cache sull'applicazione PSQL 
+
+						![](assets/PSQL_cache_annotations.png)
+					</section>
+
+					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
+					data-background-size="contain" data-background-repeat="no-repeat">
+						### Quarkus e cache
+
+						- Il risultato è che l'aggiornamento su user "psykedady" viene visto solo dopo la delete:
+
+						![](assets/PSQL_Cache_curl.png)
 					</section>
 
 					<section data-markdown data-background-image="assets/blwallpaper_dark_down.png" 
